@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-travelbackend-dev-154404-authRole",
+      "UnauthRoleArn": "arn:aws:iam::917355746221:role/amplify-travelbackend-dev-154404-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::917355746221:role/amplify-travelbackend-dev-154404-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-travelbackend-dev-154404-deployment",
+      "UnauthRoleName": "amplify-travelbackend-dev-154404-unauthRole",
+      "StackName": "amplify-travelbackend-dev-154404",
+      "StackId": "arn:aws:cloudformation:us-west-1:917355746221:stack/amplify-travelbackend-dev-154404/955efb70-2564-11ec-b2d0-06fe5c07a233",
+      "AmplifyAppId": "d3idh5qgo70bz5"
+    },
+    "categories": {
+      "auth": {
+        "travelbackend653c40c5": {}
+      },
+      "function": {
+        "travelbackend653c40c5DefineAuthChallenge": {},
+        "travelbackend653c40c5CreateAuthChallenge": {},
+        "travelbackend653c40c5VerifyAuthChallengeResponse": {
+          "RECAPTCHASECRET": ""
+        },
+        "travelbackend653c40c5CustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "",
+          "EMAILMESSAGE": ""
+        }
+      }
+    }
+  }
+}

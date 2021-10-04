@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import LoginForm from './components/LoginForm';
 import React, {useState} from "react";
+import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 function App() {
   const adminUser = {
