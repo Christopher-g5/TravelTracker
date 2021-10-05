@@ -1,5 +1,171 @@
-type Todo @model {
+type Customer {
   id: ID!
   name: String!
-  description: String
+  email: String!
+  password: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelCustomerConnection {
+  items: [Customer]
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelCustomerFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  email: ModelStringInput
+  password: ModelStringInput
+  and: [ModelCustomerFilterInput]
+  or: [ModelCustomerFilterInput]
+  not: ModelCustomerFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getCustomer(id: ID!): Customer
+  listCustomers(
+    filter: ModelCustomerFilterInput
+    limit: Int
+    nextToken: String
+  ): ModelCustomerConnection
+}
+
+input CreateCustomerInput {
+  id: ID
+  name: String!
+  email: String!
+  password: String!
+}
+
+input UpdateCustomerInput {
+  id: ID!
+  name: String
+  email: String
+  password: String
+}
+
+input DeleteCustomerInput {
+  id: ID!
+}
+
+type Mutation {
+  createCustomer(
+    input: CreateCustomerInput!
+    condition: ModelCustomerConditionInput
+  ): Customer
+  updateCustomer(
+    input: UpdateCustomerInput!
+    condition: ModelCustomerConditionInput
+  ): Customer
+  deleteCustomer(
+    input: DeleteCustomerInput!
+    condition: ModelCustomerConditionInput
+  ): Customer
+}
+
+input ModelCustomerConditionInput {
+  name: ModelStringInput
+  email: ModelStringInput
+  password: ModelStringInput
+  and: [ModelCustomerConditionInput]
+  or: [ModelCustomerConditionInput]
+  not: ModelCustomerConditionInput
+}
+
+type Subscription {
+  onCreateCustomer: Customer @aws_subscribe(mutations: ["createCustomer"])
+  onUpdateCustomer: Customer @aws_subscribe(mutations: ["updateCustomer"])
+  onDeleteCustomer: Customer @aws_subscribe(mutations: ["deleteCustomer"])
 }

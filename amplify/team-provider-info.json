@@ -16,15 +16,25 @@
         "travelbackend653c40c5": {}
       },
       "function": {
-        "travelbackend653c40c5DefineAuthChallenge": {},
-        "travelbackend653c40c5CreateAuthChallenge": {},
+        "travelbackend653c40c5DefineAuthChallenge": {
+          "deploymentBucketName": "amplify-travelbackend-dev-154404-deployment",
+          "s3Key": "amplify-builds/travelbackend653c40c5DefineAuthChallenge-454441493736742b3365-build.zip"
+        },
+        "travelbackend653c40c5CreateAuthChallenge": {
+          "deploymentBucketName": "amplify-travelbackend-dev-154404-deployment",
+          "s3Key": "amplify-builds/travelbackend653c40c5CreateAuthChallenge-67724c324c4e59316a74-build.zip"
+        },
         "travelbackend653c40c5VerifyAuthChallengeResponse": {
-          "RECAPTCHASECRET": ""
+          "RECAPTCHASECRET": "",
+          "deploymentBucketName": "amplify-travelbackend-dev-154404-deployment",
+          "s3Key": "amplify-builds/travelbackend653c40c5VerifyAuthChallengeResponse-4552337450696e444c58-build.zip"
         },
         "travelbackend653c40c5CustomMessage": {
           "REDIRECTURL": "",
           "EMAILSUBJECT": "",
-          "EMAILMESSAGE": ""
+          "EMAILMESSAGE": "",
+          "deploymentBucketName": "amplify-travelbackend-dev-154404-deployment",
+          "s3Key": "amplify-builds/travelbackend653c40c5CustomMessage-316b4e72563649394247-build.zip"
         }
       }
     }
