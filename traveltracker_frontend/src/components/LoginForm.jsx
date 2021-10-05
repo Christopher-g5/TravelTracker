@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { setUserSession } from "./Utils/Common";
 
 function LoginForm({ Login, error }) {
   const [details, setDetails] = useState({ name: "", email: "", password: "" });
@@ -11,30 +9,8 @@ function LoginForm({ Login, error }) {
     Login(details);
   };
 
-  // handle button click of login form
-  const handleLogin = () => {
-    setError(null);
-    setLoading(true);
-    axios
-      .post("http://localhost:4000/users/signin", {
-        username: details.email,
-        password: details.password,
-      })
-      .then((response) => {
-        setLoading(false);
-        setUserSession(response.data.token, response.data.user);
-        props.history.push("/dashboard");
-      })
-      .catch((error) => {
-        setLoading(false);
-        if (error.response.status === 401)
-          setError(error.response.data.message);
-        else setError("Something went wrong. Please try again later.");
-      });
-  };
-
   return (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={submitHandler}>
       <div className="form-inner">
         <h2>Login</h2>
         {error != "" ? <div className="error">{error}</div> : ""}
