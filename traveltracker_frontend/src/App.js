@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import LoginForm from './components/LoginForm';
 import React, {useState} from "react";
+import Amplify, { API, graphqlOperation } from 'aws-amplify'
 
 function App() {
   const adminUser = {
