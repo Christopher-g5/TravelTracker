@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-traveltracker-dev-145448-authRole",
+      "UnauthRoleArn": "arn:aws:iam::917355746221:role/amplify-traveltracker-dev-145448-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::917355746221:role/amplify-traveltracker-dev-145448-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-traveltracker-dev-145448-deployment",
+      "UnauthRoleName": "amplify-traveltracker-dev-145448-unauthRole",
+      "StackName": "amplify-traveltracker-dev-145448",
+      "StackId": "arn:aws:cloudformation:us-west-1:917355746221:stack/amplify-traveltracker-dev-145448/dd78b190-2626-11ec-aa66-061e56ee2007",
+      "AmplifyAppId": "dbwnxidpbavmg"
+    }
+  }
+}
