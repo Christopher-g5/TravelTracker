@@ -5,6 +5,11 @@ import LoginForm from './components/LoginForm';
 import React, {useState} from "react";
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
 
+
+import awsExports from "./aws-exports";
+Amplify.configure(awsExports);
+
+
 function App() {
   const adminUser = {
     email: "admin@admin.com",
