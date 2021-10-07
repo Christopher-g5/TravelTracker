@@ -17,7 +17,7 @@
     }
   },
   "auth": {
-    "traveltrackertravelt3954ce26": {
+    "traveltrackertravelt784e842e": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -27,7 +27,9 @@
           "PREFERRED_USERNAME"
         ],
         "signupAttributes": [
-          "EMAIL"
+          "ADDRESS",
+          "EMAIL",
+          "NAME"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,

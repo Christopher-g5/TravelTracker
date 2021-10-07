@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 
-function LoginForm({ Login, error }) {
-  const [details, setDetails] = useState({ username: "", password: "" });
+function SignUpForm({ Login, error }) {
+  const [details, setDetails] = useState({
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -15,15 +20,23 @@ function LoginForm({ Login, error }) {
         <h2>Login</h2>
         {error != "" ? <div className="error">{error}</div> : ""}
         <div className="form-group">
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="name">Name:</label>
           <input
             type="text"
             name="name"
-            id="username"
-            onChange={(e) =>
-              setDetails({ ...details, username: e.target.value })
-            }
+            id="name"
+            onChange={(e) => setDetails({ ...details, name: e.target.value })}
             value={details.name}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email: </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            onChange={(e) => setDetails({ ...details, email: e.target.value })}
+            value={details.email}
           />
         </div>
         <div className="form_group">
@@ -44,4 +57,4 @@ function LoginForm({ Login, error }) {
   );
 }
 
-export default LoginForm;
+export default SignUpForm;
