@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "traveltrackertravelt784e842e_identitypool_784e842e",
+    "identityPoolName": "traveltrackertravelt45017c36_identitypool_45017c36",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "travel784e842e",
-    "userPoolName": "traveltrackertravelt784e842e_userpool_784e842e",
+    "resourceNameTruncated": "travel45017c36",
+    "userPoolName": "traveltrackertravelt45017c36_userpool_45017c36",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -20,7 +20,8 @@
     "requiredAttributes": [
         "address",
         "email",
-        "name"
+        "name",
+        "phone_number"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
@@ -31,10 +32,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "travel784e842e_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "travel45017c36_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "784e842e",
-    "resourceName": "traveltrackertravelt784e842e",
+    "sharedId": "45017c36",
+    "resourceName": "traveltrackertravelt45017c36",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [

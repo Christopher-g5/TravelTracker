@@ -8,7 +8,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authtraveltrackertravelt3954ce26"
+              "userPoolId": "authtraveltrackertravelt45017c36"
             }
           },
           "additionalAuthenticationProviders": []
@@ -17,7 +17,7 @@
     }
   },
   "auth": {
-    "traveltrackertravelt784e842e": {
+    "traveltrackertravelt45017c36": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -29,7 +29,8 @@
         "signupAttributes": [
           "ADDRESS",
           "EMAIL",
-          "NAME"
+          "NAME",
+          "PHONE_NUMBER"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
