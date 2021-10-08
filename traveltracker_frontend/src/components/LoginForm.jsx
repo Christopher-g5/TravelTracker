@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 function LoginForm({ Login, error }) {
   const [details, setDetails] = useState({ username: "", password: "" });
-
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -23,7 +22,7 @@ function LoginForm({ Login, error }) {
             onChange={(e) =>
               setDetails({ ...details, username: e.target.value })
             }
-            value={details.name}
+            value={details.username}
           />
         </div>
         <div className="form_group">

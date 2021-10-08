@@ -17,7 +17,7 @@ function SignUpForm({ Login, error }) {
   return (
     <form onSubmit={submitHandler}>
       <div className="form-inner">
-        <h2>Login</h2>
+        <h2>Create New Account</h2>
         {error != "" ? <div className="error">{error}</div> : ""}
         <div className="form-group">
           <label htmlFor="name">Name:</label>
@@ -51,7 +51,7 @@ function SignUpForm({ Login, error }) {
             value={details.password}
           />
         </div>
-        <input type="submit" value="LOGIN" />
+        <input type="submit" value="Create Account" />
       </div>
     </form>
   );
