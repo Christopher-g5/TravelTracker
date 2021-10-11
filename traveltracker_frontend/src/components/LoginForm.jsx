@@ -1,11 +1,31 @@
 import React, { useState } from "react";
+import { Auth } from "aws-amplify";
 
 function LoginForm({ Login, error }) {
   const [details, setDetails] = useState({ username: "", password: "" });
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const [verification, setVerification] = useState({
+    isRequired: false,
+    code: "",
+  });
+
+  const submitHandler = async function (event) {
+    event.preventDefault();
+    try {
+      let reponse = await Auth.signIn(details.username, details.password);
+      console.log("auth reponse", reponse);
+    } catch (error) {
+      if (error.name == "UserNotConfirmedException") {
+        setVerification({ ...verification, isRequired: true });
+      } else console.log("error signing in", error);
+    }
 
     Login(details);
+  };
+
+  const handleVerificationClick = async function (event) {
+    console.log(verification.code);
+    let reponse = await Auth.confirmSignUp(details.username, verification.code);
+    console.log("auth reponse", reponse);
   };
 
   return (
@@ -38,6 +58,23 @@ function LoginForm({ Login, error }) {
           />
         </div>
         <input type="submit" value="LOGIN" />
+        <div>
+          {verification.isRequired ? (
+            <div className="form_group">
+              <label html="verification">Verification Code: </label>
+              <input
+                type="verification"
+                name="verification"
+                id="verification"
+                onChange={(e) =>
+                  setVerification({ ...verification, code: e.target.value })
+                }
+                value={verification.code}
+              />
+              <button onClick={handleVerificationClick}>Submit</button>
+            </div>
+          ) : null}
+        </div>
       </div>
     </form>
   );

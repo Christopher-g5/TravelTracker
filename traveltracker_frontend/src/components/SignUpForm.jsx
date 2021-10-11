@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Auth } from "aws-amplify";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 function SignUpForm({ Login, error }) {
   const [details, setDetails] = useState({
@@ -6,10 +9,29 @@ function SignUpForm({ Login, error }) {
     username: "",
     email: "",
     password: "",
+    address: "",
   });
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const [phoneNumberState, setPhoneNumberState] = useState();
+
+  const submitHandler = async function (event) {
+    event.preventDefault();
+    try {
+      let reponse = await Auth.signUp({
+        username: details.username,
+        password: details.password,
+        attributes: {
+          name: details.name,
+          email: details.email,
+          address: details.address,
+          phone_number: phoneNumberState,
+        },
+      });
+
+      Auth.console.log("auth reponse", reponse);
+    } catch (error) {
+      console.log("error signing in", error);
+    }
 
     Login(details);
   };
@@ -30,6 +52,18 @@ function SignUpForm({ Login, error }) {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            onChange={(e) =>
+              setDetails({ ...details, username: e.target.value })
+            }
+            value={details.username}
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="email">Email: </label>
           <input
             type="email"
@@ -37,6 +71,26 @@ function SignUpForm({ Login, error }) {
             id="email"
             onChange={(e) => setDetails({ ...details, email: e.target.value })}
             value={details.email}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="address">Address: </label>
+          <input
+            type="address"
+            name="address"
+            id="address"
+            onChange={(e) =>
+              setDetails({ ...details, address: e.target.value })
+            }
+            value={details.address}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phoneNumber">Phone Number: </label>
+          <PhoneInput
+            placeholder="(510)123-4567"
+            value={phoneNumberState}
+            onChange={setPhoneNumberState}
           />
         </div>
         <div className="form_group">

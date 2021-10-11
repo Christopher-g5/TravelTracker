@@ -37,13 +37,22 @@ function App() {
   return (
     <div className="App">
     
-      {loginState.loginVisible ? <LoginForm Login ={Login} error={error}/>
-       : null}
-      {loginState.signUpVisible ? <SignUpForm Login ={Login} error={error}/>
-       : null}
-      <button onClick={handleSignUpClick}>
-        Sign Up
-      </button>
+      {loginState.loginVisible ? 
+        <div>
+          <LoginForm Login ={Login} error={error}/>
+          <button onClick={handleSignUpClick}>
+            Create an Account
+          </button>
+        </div>
+      : null}
+      {loginState.signUpVisible ? 
+        <div>
+          <SignUpForm Login ={Login} error={error}/>
+          <button onClick={handleSignUpClick}>
+            Already have an Account: Sign in
+          </button>
+        </div>
+      : null}
     </div>
   );
 }
