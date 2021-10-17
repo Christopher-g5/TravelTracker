@@ -10,12 +10,22 @@ function LoginForm({ Login, showMain }) {
 
   const submitHandler = async function (event) {
     event.preventDefault();
+
+    const usernameInputField = document.getElementById("username");
+    const passwordInputField = document.getElementById("password");
+
     try {
       let reponse = await Auth.signIn(details.username, details.password);
       console.log("auth reponse", reponse);
       showMain();
     } catch (error) {
-      if (error.name == "UserNotConfirmedException") {
+      if (
+        error.name == "NotAuthorizedException" ||
+        error.name == "UserNotFoundException"
+      ) {
+        usernameInputField.value = "";
+        passwordInputField.value = "";
+      } else if (error.name == "UserNotConfirmedException") {
         setVerification({ ...verification, isRequired: true });
       } else console.log("error signing in", error);
     }
@@ -53,7 +63,6 @@ function LoginForm({ Login, showMain }) {
             onChange={(e) =>
               setDetails({ ...details, username: e.target.value })
             }
-            value={details.username}
           />
         </div>
         <div className="form_group">
@@ -65,7 +74,6 @@ function LoginForm({ Login, showMain }) {
             onChange={(e) =>
               setDetails({ ...details, password: e.target.value })
             }
-            value={details.password}
           />
         </div>
         <input type="submit" value="LOGIN" />
