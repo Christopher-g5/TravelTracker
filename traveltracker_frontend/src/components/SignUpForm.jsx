@@ -3,7 +3,7 @@ import { Auth } from "aws-amplify";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 
-function SignUpForm({ Login, error }) {
+function SignUpForm({ Login, handleSignUpClick }) {
   const [details, setDetails] = useState({
     name: "",
     username: "",
@@ -28,7 +28,8 @@ function SignUpForm({ Login, error }) {
         },
       });
 
-      Auth.console.log("auth reponse", reponse);
+      //Auth.console.log("auth reponse", reponse);
+      handleSignUpClick();
     } catch (error) {
       console.log("error signing in", error);
     }
@@ -40,7 +41,6 @@ function SignUpForm({ Login, error }) {
     <form onSubmit={submitHandler}>
       <div className="form-inner">
         <h2>Create New Account</h2>
-        {error != "" ? <div className="error">{error}</div> : ""}
         <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input
@@ -74,7 +74,7 @@ function SignUpForm({ Login, error }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="address">Address: </label>
+          <label htmlFor="city">Address: </label>
           <input
             type="address"
             name="address"

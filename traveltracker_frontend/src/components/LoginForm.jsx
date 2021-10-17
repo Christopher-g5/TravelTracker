@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 
-function LoginForm({ Login, error }) {
+function LoginForm({ Login, showMain }) {
   const [details, setDetails] = useState({ username: "", password: "" });
   const [verification, setVerification] = useState({
     isRequired: false,
@@ -13,6 +13,7 @@ function LoginForm({ Login, error }) {
     try {
       let reponse = await Auth.signIn(details.username, details.password);
       console.log("auth reponse", reponse);
+      showMain();
     } catch (error) {
       if (error.name == "UserNotConfirmedException") {
         setVerification({ ...verification, isRequired: true });
@@ -23,16 +24,26 @@ function LoginForm({ Login, error }) {
   };
 
   const handleVerificationClick = async function (event) {
+    const verificationInputField = document.getElementById("verification");
     console.log(verification.code);
-    let reponse = await Auth.confirmSignUp(details.username, verification.code);
-    console.log("auth reponse", reponse);
+    try {
+      let reponse = await Auth.confirmSignUp(
+        details.username,
+        verification.code
+      );
+      showMain();
+      //console.log("auth reponse", reponse);
+    } catch (error) {
+      if (error.name == "CodeMismatchException") {
+        verificationInputField.value = "Incorrect Code";
+      }
+    }
   };
 
   return (
     <form onSubmit={submitHandler}>
       <div className="form-inner">
         <h2>Login</h2>
-        {error != "" ? <div className="error">{error}</div> : ""}
         <div className="form-group">
           <label htmlFor="username">Username:</label>
           <input
@@ -69,7 +80,6 @@ function LoginForm({ Login, error }) {
                 onChange={(e) =>
                   setVerification({ ...verification, code: e.target.value })
                 }
-                value={verification.code}
               />
               <button onClick={handleVerificationClick}>Submit</button>
             </div>

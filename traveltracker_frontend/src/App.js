@@ -12,13 +12,17 @@ Amplify.configure(awsExports);
 function App() {
 
   const [user, setUser] = useState({ username: "", email: "" });
-  const [error, setError] = useState("");
   const [loginState, setVisibility] = useState({loginVisible: true, signUpVisible: false})
+  const [showMainPage, setMainVisibility] = useState(false);
 
   const Login = (details) => {
     console.log(details);
     setUser({username: details.username, email: details.email})
   };
+
+  const showMain = () => {
+    setMainVisibility(true);
+  }
 
   const Logout = () => {
     setUser({username: "", email: ""})
@@ -36,23 +40,28 @@ function App() {
 
   return (
     <div className="App">
-    
-      {loginState.loginVisible ? 
+      {showMainPage ? 
+      <div>
+        <h1>Main App</h1>
+      </div>
+      : (
+      loginState.loginVisible ? 
         <div>
-          <LoginForm Login ={Login} error={error}/>
+          <LoginForm Login ={Login} showMain={showMain} />
           <button onClick={handleSignUpClick}>
             Create an Account
           </button>
         </div>
-      : null}
-      {loginState.signUpVisible ? 
+      :
+      loginState.signUpVisible ? 
         <div>
-          <SignUpForm Login ={Login} error={error}/>
+          <SignUpForm Login ={Login} handleSignUpClick = {handleSignUpClick}/>
           <button onClick={handleSignUpClick}>
             Already have an Account: Sign in
           </button>
         </div>
-      : null}
+      : null
+    )}
     </div>
   );
 }
