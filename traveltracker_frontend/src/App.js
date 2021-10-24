@@ -2,6 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
+import TrackedFlights from './components/TrackedFlights';
 import React, {useState} from "react";
 import Amplify, { API, Auth, graphqlOperation } from 'aws-amplify';
 import awsExports from "./aws-exports";
@@ -42,7 +43,7 @@ function App() {
     <div className="App">
       {showMainPage ? 
       <div>
-        <h1>Main App</h1>
+        <TrackedFlights/>
       </div>
       : (
       loginState.loginVisible ? 
