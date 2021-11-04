@@ -7,8 +7,10 @@ import React, {useState} from "react";
 import Amplify, { API, Auth, graphqlOperation } from 'aws-amplify';
 import awsExports from "./aws-exports";
 import { AmplifySignOut,withAuthenticator } from '@aws-amplify/ui-react'
-Amplify.configure(awsExports);
+import { Helmet } from "react-helmet";
 
+
+Amplify.configure(awsExports);
 
 function App() {
 

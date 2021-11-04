@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import Script from "@gumgum/react-script-tag";
 
 function NewFlight() {
   const [details, setDetails] = useState({ depart: "", arrive: "" });
@@ -12,14 +11,7 @@ function NewFlight() {
   return (
     <form onSubmit={submitHandler}>
       <Helmet>
-        <script
-          defer
-          async
-          src="https://cdn.jsdelivr.net/npm/airport-autocomplete-js@latest/dist/index.browser.min.js"
-        ></script>
-        <script defer async>
-          AirportInput("autocomplete-airport-1");
-        </script>
+        <script defer={true}>AirportInput("autocomplete-airport-1");</script>
       </Helmet>
       <h2>Flight Information</h2>
       <div className="form_group">
