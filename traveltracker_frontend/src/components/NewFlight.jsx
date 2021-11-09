@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function NewFlight() {
   //const [details, setDetails] = useState({ depart: "", arrive: "" });
-  const [dates, setDates] = useState({ depart: null, arrive: null });
+  const [dates, setDates] = useState(null);
 
   var refDepart = React.createRef();
   var parsedDepart = null;
@@ -39,10 +39,8 @@ function NewFlight() {
             className="inp"
             ref={refDepart}
           />
-          <DatePicker
-            selected={dates.depart}
-            onChange={(date) => setDates({ ...dates, depart: date })}
-          />
+          <label htmlFor="date">Departure Date: </label>
+          <DatePicker selected={dates} onChange={(date) => setDates(date)} />
         </div>
         <div className="form-group">
           <label htmlFor="arrive">Destination Airport IATA Code: </label>
@@ -51,10 +49,6 @@ function NewFlight() {
             name="depart"
             id="autocomplete-airport-2"
             ref={refArrive}
-          />
-          <DatePicker
-            selected={dates.arrive}
-            onChange={(date) => setDates({ ...dates, arrive: date })}
           />
         </div>
       </div>
