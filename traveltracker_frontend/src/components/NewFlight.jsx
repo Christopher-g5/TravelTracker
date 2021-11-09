@@ -2,22 +2,27 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Fuse from "fuse.js";
 
 function NewFlight() {
-  const [details, setDetails] = useState({ depart: "", arrive: "" });
-  // const [dates, setDates] = useState(null);
+  //const [details, setDetails] = useState({ depart: "", arrive: "" });
   const [dates, setDates] = useState({ depart: null, arrive: null });
+
+  var refDepart = React.createRef();
+  var parsedDepart = null;
+  var refArrive = React.createRef();
+  var parsedArrive = null;
 
   const submitHandler = async function (event) {
     event.preventDefault();
+    console.log(refDepart.current.value);
     console.log(dates.depart);
+    console.log(refArrive.current.value);
     console.log(dates.arrive);
   };
 
   return (
     <form onSubmit={submitHandler}>
-      <Helmet>
+      <Helmet async={true}>
         <script defer={true}>
           AirportInput("autocomplete-airport-1");
           AirportInput("autocomplete-airport-2");
@@ -31,7 +36,8 @@ function NewFlight() {
             type="text"
             name="depart"
             id="autocomplete-airport-1"
-            onChange={(e) => setDetails({ ...details, depart: e.target.value })}
+            className="inp"
+            ref={refDepart}
           />
           <DatePicker
             selected={dates.depart}
@@ -44,7 +50,7 @@ function NewFlight() {
             type="text"
             name="depart"
             id="autocomplete-airport-2"
-            onChange={(e) => setDetails({ ...details, arrive: e.target.value })}
+            ref={refArrive}
           />
           <DatePicker
             selected={dates.arrive}
