@@ -50,6 +50,7 @@ function App() {
       : (
       loginState.loginVisible ? 
         <div>
+
           <LoginForm Login ={Login} showMain={showMain} />
           <button onClick={handleSignUpClick}>
             Create an Account
