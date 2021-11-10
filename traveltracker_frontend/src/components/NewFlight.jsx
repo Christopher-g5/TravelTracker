@@ -14,10 +14,20 @@ function NewFlight() {
 
   const submitHandler = async function (event) {
     event.preventDefault();
+
+    parsedDepart = parseIATA(refDepart.current.value);
+    parsedArrive = parseIATA(refArrive.current.value);
     console.log(refDepart.current.value);
-    console.log(dates.depart);
-    console.log(refArrive.current.value);
-    console.log(dates.arrive);
+    console.log(parsedDepart);
+    // console.log(dates.depart);
+    // console.log(refArrive.current.value);
+    // console.log(dates.arrive);
+
+    //DATABASE AND API CODE HERE
+  };
+
+  const parseIATA = (airport) => {
+    return airport.split(" ", 1)[0];
   };
 
   return (
