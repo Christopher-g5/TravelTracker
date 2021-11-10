@@ -7,6 +7,7 @@ function LoginForm({ Login, showMain }) {
     isRequired: false,
     code: "",
   });
+  const [uid, setUID] = useState(" ");
 
   const submitHandler = async function (event) {
     event.preventDefault();
@@ -16,7 +17,8 @@ function LoginForm({ Login, showMain }) {
 
     try {
       let reponse = await Auth.signIn(details.username, details.password);
-      console.log("auth reponse", reponse);
+      setUID();
+      console.log("auth reponse", reponse.attributes.email);
       showMain();
     } catch (error) {
       if (
