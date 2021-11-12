@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function NewFlight() {
+function NewFlight(uid) {
   //const [details, setDetails] = useState({ depart: "", arrive: "" });
   const [dates, setDates] = useState(null);
 
@@ -17,7 +17,7 @@ function NewFlight() {
 
     parsedDepart = parseIATA(refDepart.current.value);
     parsedArrive = parseIATA(refArrive.current.value);
-    console.log(refDepart.current.value);
+    console.log(parsedArrive);
     console.log(parsedDepart);
     // console.log(dates.depart);
     // console.log(refArrive.current.value);

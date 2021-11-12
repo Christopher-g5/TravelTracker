@@ -4,23 +4,22 @@ import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import TrackedFlights from './components/TrackedFlights';
 import React, {useState} from "react";
-import Amplify, { API, Auth, graphqlOperation } from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import awsExports from "./aws-exports";
 import { AmplifySignOut,withAuthenticator } from '@aws-amplify/ui-react'
-import { Helmet } from "react-helmet";
 
 
 Amplify.configure(awsExports);
 
 function App() {
 
-  const [user, setUser] = useState({ username: "", email: "" });
   const [loginState, setVisibility] = useState({loginVisible: true, signUpVisible: false})
   const [showMainPage, setMainVisibility] = useState(false);
+  const [uid, setUID] = useState(" ");
 
-  const Login = (details) => {
-    console.log(details);
-    setUser({username: details.username, email: details.email})
+  const Login = (uniqueID) => {
+    console.log(uniqueID);
+    setUID(uniqueID);
   };
 
   const showMain = () => {
@@ -28,12 +27,7 @@ function App() {
   }
 
   const Logout = () => {
-    setUser({username: "", email: ""})
-  };
-
-  const SignUp = (details) => {
-    console.log(details);
-
+    setUID(" ");
   };
 
   const handleSignUpClick = () => {
@@ -45,7 +39,7 @@ function App() {
     <div className="App">
       {showMainPage ? 
       <div>
-        <TrackedFlights/>
+        <TrackedFlights uid={uid}/>
       </div>
       : (
       loginState.loginVisible ? 

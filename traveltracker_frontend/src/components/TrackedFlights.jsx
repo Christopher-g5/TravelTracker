@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NewFlight from "./NewFlight";
 
-function TrackedFlights() {
+function TrackedFlights(uid) {
   const [showNewFlightPage, setNewFlightVisibility] = useState(false);
 
   const handleNewFlightClick = () => {
@@ -11,7 +11,7 @@ function TrackedFlights() {
   return (
     <div>
       {showNewFlightPage ? (
-        <NewFlight />
+        <NewFlight uid={uid} />
       ) : (
         <div>
           <h1>Tracked Flights</h1>

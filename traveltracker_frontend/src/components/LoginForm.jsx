@@ -7,32 +7,33 @@ function LoginForm({ Login, showMain }) {
     isRequired: false,
     code: "",
   });
-  const [uid, setUID] = useState(" ");
 
   const submitHandler = async function (event) {
     event.preventDefault();
 
     const usernameInputField = document.getElementById("username");
     const passwordInputField = document.getElementById("password");
-
+    let reponse = null;
     try {
-      let reponse = await Auth.signIn(details.username, details.password);
-      setUID();
+      //Cognito Sign in
+      reponse = await Auth.signIn(details.username, details.password);
       console.log("auth reponse", reponse.attributes.email);
       showMain();
     } catch (error) {
+      //Unsuccesful login conditions
       if (
-        error.name == "NotAuthorizedException" ||
-        error.name == "UserNotFoundException"
+        error.name === "NotAuthorizedException" ||
+        error.name === "UserNotFoundException"
       ) {
         usernameInputField.value = "";
         passwordInputField.value = "";
-      } else if (error.name == "UserNotConfirmedException") {
+      } else if (error.name === "UserNotConfirmedException") {
+        //User not yet verified
         setVerification({ ...verification, isRequired: true });
       } else console.log("error signing in", error);
     }
-
-    Login(details);
+    //Successful Login will return email to App.js
+    Login(reponse.attributes.email);
   };
 
   const handleVerificationClick = async function (event) {
@@ -46,7 +47,7 @@ function LoginForm({ Login, showMain }) {
       showMain();
       //console.log("auth reponse", reponse);
     } catch (error) {
-      if (error.name == "CodeMismatchException") {
+      if (error.name === "CodeMismatchException") {
         verificationInputField.value = "Incorrect Code";
       }
     }
