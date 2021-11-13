@@ -1,11 +1,10 @@
 import React, { useState, Component, useEffect } from "react";
 import NewFlight from "./NewFlight";
 import axios from "axios";
-import cors from "cors";
 
 function Graph() {
   useEffect(() => {
-    const api = "https://http.cat/401";
+    const api = "https://api.sampleapis.com/coffee/hot";
     const data = {
       title: "Black",
       description:
@@ -14,7 +13,7 @@ function Graph() {
       id: 1,
     };
     axios
-      .post(api)
+      .get(api)
       .then((response) => {
         console.log(response);
       })
