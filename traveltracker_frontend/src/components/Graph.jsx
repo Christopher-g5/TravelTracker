@@ -12,7 +12,7 @@ function Graph() {
       departureDate: "2021-12-21",
     };
     axios
-      .get(api)
+      .post(api, data)
       .then((response) => {
         console.log(response);
       })
