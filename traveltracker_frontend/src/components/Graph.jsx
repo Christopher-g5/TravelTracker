@@ -4,13 +4,12 @@ import axios from "axios";
 
 function Graph() {
   useEffect(() => {
-    const api = "https://api.sampleapis.com/coffee/hot";
+    const api =
+      "https://zg8kwg7iul.execute-api.us-west-1.amazonaws.com/staging";
     const data = {
-      title: "Black",
-      description:
-        "Black coffee is as simple as it gets with ground coffee beans steeped in hot water, served warm. And if you want to sound fancy, you can call black coffee by its proper name: cafe noir.",
-      ingredients: ["Coffee"],
-      id: 1,
+      originIataCode: "SFO",
+      destinationIataCode: "JFK",
+      departureDate: "2021-12-21",
     };
     axios
       .get(api)

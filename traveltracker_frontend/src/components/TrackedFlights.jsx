@@ -11,10 +11,16 @@ function TrackedFlights(uid) {
   };
 
   const fetchTrackedFlights = () => {
+    //DATABASE CODE
+
     return null;
   };
 
-  const data = ["Hello", "There", "Friend"];
+  const data = [
+    "DATE:     SFO (Departing Airport)    -------------------->       SEA  (Arriving Airport)",
+    "DATE:     SFO (Departing Airport)    -------------------->       SEA  (Arriving Airport)",
+    "DATE:     SFO (Departing Airport)    -------------------->       SEA  (Arriving Airport)",
+  ];
 
   return (
     <div>
