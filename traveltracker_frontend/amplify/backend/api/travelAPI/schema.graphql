@@ -1,6 +1,11 @@
-type Customer @model {
-  id: ID!
-  name: String!
-  email: String! 
+type Customer @model @key(name: "getByUid", fields: ["uid"], queryField: "getByUid") {
+  uid: String! 
   password: String!
+  savedVacations: [Vacation!]
+}
+
+type Vacation {
+  departureDate: String!
+  fromCity: String!
+  toCity: String! 
 }

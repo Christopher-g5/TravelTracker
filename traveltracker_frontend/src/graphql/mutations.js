@@ -1,43 +1,58 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createCustomer = /* GraphQL */ `
+  mutation CreateCustomer(
+    $input: CreateCustomerInput!
+    $condition: ModelCustomerConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
+    createCustomer(input: $input, condition: $condition) {
       id
-      name
-      description
+      uid
+      password
+      savedVacations {
+        departureDate
+        fromCity
+        toCity
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateCustomer = /* GraphQL */ `
+  mutation UpdateCustomer(
+    $input: UpdateCustomerInput!
+    $condition: ModelCustomerConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
+    updateCustomer(input: $input, condition: $condition) {
       id
-      name
-      description
+      uid
+      password
+      savedVacations {
+        departureDate
+        fromCity
+        toCity
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteCustomer = /* GraphQL */ `
+  mutation DeleteCustomer(
+    $input: DeleteCustomerInput!
+    $condition: ModelCustomerConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteCustomer(input: $input, condition: $condition) {
       id
-      name
-      description
+      uid
+      password
+      savedVacations {
+        departureDate
+        fromCity
+        toCity
+      }
       createdAt
       updatedAt
     }
