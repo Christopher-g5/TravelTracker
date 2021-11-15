@@ -6,7 +6,7 @@
     "@aws-amplify/ui-react": "^1.2.19",
     "@babel/polyfill": "^7.12.1",
     "@gumgum/react-script-tag": "0.0.3",
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "airport-autocomplete-js": "^2.1.4",

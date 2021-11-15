@@ -1,49 +1,40 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateCustomer = /* GraphQL */ `
-  subscription OnCreateCustomer {
-    onCreateCustomer {
+export const onCreateTrip = /* GraphQL */ `
+  subscription OnCreateTrip {
+    onCreateTrip {
       id
       uid
-      password
-      savedVacations {
-        departureDate
-        fromCity
-        toCity
-      }
+      departureDate
+      fromCity
+      toCity
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateCustomer = /* GraphQL */ `
-  subscription OnUpdateCustomer {
-    onUpdateCustomer {
+export const onUpdateTrip = /* GraphQL */ `
+  subscription OnUpdateTrip {
+    onUpdateTrip {
       id
       uid
-      password
-      savedVacations {
-        departureDate
-        fromCity
-        toCity
-      }
+      departureDate
+      fromCity
+      toCity
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteCustomer = /* GraphQL */ `
-  subscription OnDeleteCustomer {
-    onDeleteCustomer {
+export const onDeleteTrip = /* GraphQL */ `
+  subscription OnDeleteTrip {
+    onDeleteTrip {
       id
       uid
-      password
-      savedVacations {
-        departureDate
-        fromCity
-        toCity
-      }
+      departureDate
+      fromCity
+      toCity
       createdAt
       updatedAt
     }

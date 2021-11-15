@@ -1,33 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getCustomer = /* GraphQL */ `
-  query GetCustomer($id: ID!) {
-    getCustomer(id: $id) {
+export const getTrip = /* GraphQL */ `
+  query GetTrip($id: ID!) {
+    getTrip(id: $id) {
       id
       uid
-      password
-      savedVacations {
-        departureDate
-        fromCity
-        toCity
-      }
+      departureDate
+      fromCity
+      toCity
       createdAt
       updatedAt
     }
   }
 `;
-export const listCustomers = /* GraphQL */ `
-  query ListCustomers(
-    $filter: ModelCustomerFilterInput
+export const listTrips = /* GraphQL */ `
+  query ListTrips(
+    $filter: ModelTripFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listCustomers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTrips(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         uid
-        password
+        departureDate
+        fromCity
+        toCity
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getByUid = /* GraphQL */ `
+  query GetByUid(
+    $uid: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelTripFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getByUid(
+      uid: $uid
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        uid
+        departureDate
+        fromCity
+        toCity
         createdAt
         updatedAt
       }

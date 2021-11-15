@@ -1,58 +1,49 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createCustomer = /* GraphQL */ `
-  mutation CreateCustomer(
-    $input: CreateCustomerInput!
-    $condition: ModelCustomerConditionInput
+export const createTrip = /* GraphQL */ `
+  mutation CreateTrip(
+    $input: CreateTripInput!
+    $condition: ModelTripConditionInput
   ) {
-    createCustomer(input: $input, condition: $condition) {
+    createTrip(input: $input, condition: $condition) {
       id
       uid
-      password
-      savedVacations {
-        departureDate
-        fromCity
-        toCity
-      }
+      departureDate
+      fromCity
+      toCity
       createdAt
       updatedAt
     }
   }
 `;
-export const updateCustomer = /* GraphQL */ `
-  mutation UpdateCustomer(
-    $input: UpdateCustomerInput!
-    $condition: ModelCustomerConditionInput
+export const updateTrip = /* GraphQL */ `
+  mutation UpdateTrip(
+    $input: UpdateTripInput!
+    $condition: ModelTripConditionInput
   ) {
-    updateCustomer(input: $input, condition: $condition) {
+    updateTrip(input: $input, condition: $condition) {
       id
       uid
-      password
-      savedVacations {
-        departureDate
-        fromCity
-        toCity
-      }
+      departureDate
+      fromCity
+      toCity
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteCustomer = /* GraphQL */ `
-  mutation DeleteCustomer(
-    $input: DeleteCustomerInput!
-    $condition: ModelCustomerConditionInput
+export const deleteTrip = /* GraphQL */ `
+  mutation DeleteTrip(
+    $input: DeleteTripInput!
+    $condition: ModelTripConditionInput
   ) {
-    deleteCustomer(input: $input, condition: $condition) {
+    deleteTrip(input: $input, condition: $condition) {
       id
       uid
-      password
-      savedVacations {
-        departureDate
-        fromCity
-        toCity
-      }
+      departureDate
+      fromCity
+      toCity
       createdAt
       updatedAt
     }

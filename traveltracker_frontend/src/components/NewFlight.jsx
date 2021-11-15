@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Graph from "./Graph";
+import { API } from 'aws-amplify';
 
 function NewFlight(uid) {
   //const [details, setDetails] = useState({ depart: "", arrive: "" });
