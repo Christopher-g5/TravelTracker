@@ -22,7 +22,7 @@ const addTrip = `mutation createTrip($uid:String! $departureDate: String! $fromC
   }
 }`;
 
-function NewFlight(uid) {
+function NewFlight(props) {
   //const [details, setDetails] = useState({ depart: "", arrive: "" });
   const [dates, setDates] = useState(null);
 
@@ -42,11 +42,11 @@ function NewFlight(uid) {
     // console.log(dates.depart);
     // console.log(refArrive.current.value);
     // console.log(dates.arrive);
-
+	
     //DATABASE AND API CODE HERE
 	//Add a new trip here with mutation to database. 
     const tripDetails = {
-    uid: uid,
+    uid: props.data,
     departureDate: dates,
 	fromCity: parsedDepart,
 	toCity: parsedArrive

@@ -15,11 +15,11 @@ function App() {
 
   const [loginState, setVisibility] = useState({loginVisible: true, signUpVisible: false})
   const [showMainPage, setMainVisibility] = useState(false);
-  const [uid, setUID] = useState(" ");
+  const [uid, setUID] = useState({data:" "});
 
   const Login = (uniqueID) => {
     console.log(uniqueID);
-    setUID(uniqueID);
+    setUID({data: uniqueID});
   };
 
   const showMain = () => {
@@ -37,9 +37,13 @@ function App() {
 
   return (
     <div className="App">
+      <div className = "titleContainer">
+        <h1>Travel Tracker</h1>
+      </div>
+      <div className="mainContainer">
       {showMainPage ? 
       <div>
-        <TrackedFlights uid={uid}/>
+        <TrackedFlights data={uid.data}/>
       </div>
       : (
       loginState.loginVisible ? 
@@ -59,9 +63,10 @@ function App() {
           </button>
         </div>
       : null
-    )}
+      )}
+      </div>
     </div>
   );
 }
 
-export default App;
+export default App
