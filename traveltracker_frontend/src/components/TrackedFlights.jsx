@@ -19,7 +19,7 @@ const getTripByUid = `query getTripByUid($uid:String!) {
 }`;
 function TrackedFlights(props) {
   const [showNewFlightPage, setNewFlightVisibility] = useState(false);
-  const [refresh, setRefresh] = useState(false);
+  const [data, setData] = useState({ trips: [] });
 
   const submitHandler = () => {
     setNewFlightVisibility(true);
@@ -34,7 +34,9 @@ function TrackedFlights(props) {
     helper();
   };
 
-  const helper = async () => {
+  var databaseList = [];
+
+  const helper = async function () {
     const idDetails = {
       uid: props.data,
     };
@@ -44,18 +46,32 @@ function TrackedFlights(props) {
         graphqlOperation(getTripByUid, idDetails)
       );
       const list = newTodo.data.getByUid.items;
-      data = list;
-      console.log(data);
+      databaseList = list;
+      setFetchedData();
+      //setData({ trips: list });
+      //console.log(data);
     } catch (e) {
       console.log("Fetching error: ", e);
     }
   };
 
-  var data = [
-    "DATE:     SFO (Departing Airport)    -------------------->       SEA  (Arriving Airport)",
-    "DATE:     SFO (Departing Airport)    -------------------->       SEA  (Arriving Airport)",
-    "DATE:     SFO (Departing Airport)    -------------------->       SEA  (Arriving Airport)",
-  ];
+  const setFetchedData = () => {
+    var aList = databaseList.map(
+      (item) =>
+        item.departureDate +
+        ":    " +
+        item.fromCity +
+        "-----------> " +
+        item.toCity
+    );
+    setData({ trips: aList });
+  };
+
+  // var data = [
+  //   "DATE:     SFO (Departing Airport)    -------------------->       SEA  (Arriving Airport)",
+  //   "DATE:     SFO (Departing Airport)    -------------------->       SEA  (Arriving Airport)",
+  //   "DATE:     SFO (Departing Airport)    -------------------->       SEA  (Arriving Airport)",
+  // ];
 
   return (
     <div>
@@ -71,7 +87,7 @@ function TrackedFlights(props) {
             <h1>Tracked Flights</h1>
             <div>
               {fetchTrackedFlights()}
-              {data.map((item) => (
+              {data.trips.map((item) => (
                 <ListGroup.Item>{item}</ListGroup.Item>
               ))}
             </div>

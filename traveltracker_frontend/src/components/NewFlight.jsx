@@ -6,6 +6,7 @@ import Graph from "./Graph";
 import { API, graphqlOperation } from "aws-amplify";
 import { createTrip } from "../graphql/mutations";
 import Amplify from "aws-amplify";
+import moment from "moment";
 
 const addTrip = `mutation createTrip($uid:String! $departureDate: String! $fromCity: String! $toCity: String!) {
   createTrip(input:{
@@ -52,13 +53,13 @@ function NewFlight(props) {
     //Add a new trip here with mutation to database.
     const tripDetails = {
       uid: props.data,
-      departureDate: dates,
+      departureDate: moment(dates).format("yyyy-MM-DD"),
       fromCity: parsedDepart,
       toCity: parsedArrive,
     };
     try {
       const newTodo = await API.graphql(graphqlOperation(addTrip, tripDetails));
-      alert(JSON.stringify(newTodo));
+      //alert(JSON.stringify(newTodo));
     } catch (e) {
       console.log("Fetching error: ", e);
     }
