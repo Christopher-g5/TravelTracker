@@ -3,10 +3,27 @@ import { Helmet } from "react-helmet";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Graph from "./Graph";
-import { format, parseISO } from "date-fns";
-import { API } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
+import { createTrip } from "../graphql/mutations";
+import Amplify from "aws-amplify";
+
+const addTrip = `mutation createTrip($uid:String! $departureDate: String! $fromCity: String! $toCity: String!) {
+  createTrip(input:{
+    uid:$uid
+    departureDate:$departureDate
+	fromCity: $fromCity
+	toCity: $toCity
+  }){
+    id
+	uid
+	departureDate
+	fromCity
+	toCity
+  }
+}`;
 
 function NewFlight(props) {
+  //const [details, setDetails] = useState({ depart: "", arrive: "" });
   const [dates, setDates] = useState(null);
   const [showGraph, setShowGraph] = useState(false);
   const [apiParams, setAPIParams] = useState({
@@ -30,6 +47,23 @@ function NewFlight(props) {
     if (parsedDepart.length > 2 && parsedArrive.length > 2) {
       setShowGraph(true);
     }
+
+    //DATABASE AND API CODE HERE
+    //Add a new trip here with mutation to database.
+    const tripDetails = {
+      uid: props.data,
+      departureDate: dates,
+      fromCity: parsedDepart,
+      toCity: parsedArrive,
+    };
+    try {
+      const newTodo = await API.graphql(graphqlOperation(addTrip, tripDetails));
+      alert(JSON.stringify(newTodo));
+    } catch (e) {
+      console.log("Fetching error: ", e);
+    }
+
+    //API.graphql(graphqlOperation(mutations.createItem, {input: itemDetails}));
   };
 
   const parseIATA = (airport) => {
