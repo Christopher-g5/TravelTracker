@@ -18,6 +18,8 @@ function LoginForm({ Login, showMain }) {
       //Cognito Sign in
       reponse = await Auth.signIn(details.username, details.password);
       console.log("auth reponse", reponse.attributes.email);
+      //Successful Login will return email to App.js
+      Login(reponse.attributes.email);
       showMain();
     } catch (error) {
       //Unsuccesful login conditions
@@ -25,15 +27,17 @@ function LoginForm({ Login, showMain }) {
         error.name === "NotAuthorizedException" ||
         error.name === "UserNotFoundException"
       ) {
-        usernameInputField.value = "";
+        usernameInputField.value = "Incorrect Login Info";
         passwordInputField.value = "";
+      } else if (error.name == "InvalidParameterException") {
+        //passwordInputField.value = "Missing Password";
+      } else if (error.name == "AuthError") {
+        usernameInputField.value = "Missing Username";
       } else if (error.name === "UserNotConfirmedException") {
         //User not yet verified
         setVerification({ ...verification, isRequired: true });
       } else console.log("error signing in", error);
     }
-    //Successful Login will return email to App.js
-    Login(reponse.attributes.email);
   };
 
   const handleVerificationClick = async function (event) {
@@ -68,7 +72,7 @@ function LoginForm({ Login, showMain }) {
             }
           />
         </div>
-        <div className="form_group">
+        <div className="form-group">
           <label html="password">Password: </label>
           <input
             type="password"

@@ -3,11 +3,17 @@ import { Helmet } from "react-helmet";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Graph from "./Graph";
-import { API } from 'aws-amplify';
+import { format, parseISO } from "date-fns";
+import { API } from "aws-amplify";
 
-function NewFlight(uid) {
-  //const [details, setDetails] = useState({ depart: "", arrive: "" });
+function NewFlight(props) {
   const [dates, setDates] = useState(null);
+  const [showGraph, setShowGraph] = useState(false);
+  const [apiParams, setAPIParams] = useState({
+    date: "",
+    depart: "",
+    arrive: "",
+  });
 
   var refDepart = React.createRef();
   var parsedDepart = null;
@@ -19,13 +25,11 @@ function NewFlight(uid) {
 
     parsedDepart = parseIATA(refDepart.current.value);
     parsedArrive = parseIATA(refArrive.current.value);
-    console.log(parsedArrive);
-    console.log(parsedDepart);
-    // console.log(dates.depart);
-    // console.log(refArrive.current.value);
-    // console.log(dates.arrive);
 
-    //DATABASE AND API CODE HERE
+    setAPIParams({ date: dates, depart: parsedDepart, arrive: parsedArrive });
+    if (parsedDepart.length > 2 && parsedArrive.length > 2) {
+      setShowGraph(true);
+    }
   };
 
   const parseIATA = (airport) => {
@@ -41,8 +45,8 @@ function NewFlight(uid) {
             AirportInput("autocomplete-airport-2");
           </script>
         </Helmet>
-        <h2>Flight Information</h2>
-        <div className="form_group">
+        <div className="form-inner">
+          <h2>Flight Information</h2>
           <div className="form-group">
             <label htmlFor="depart">Departing Airport IATA Code: </label>
             <input
@@ -53,7 +57,11 @@ function NewFlight(uid) {
               ref={refDepart}
             />
             <label htmlFor="date">Departure Date: </label>
-            <DatePicker selected={dates} onChange={(date) => setDates(date)} />
+            <DatePicker
+              selected={dates}
+              onChange={(date) => setDates(date)}
+              dateFormat={"yyyy-MM-dd"}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="arrive">Destination Airport IATA Code: </label>
@@ -64,10 +72,10 @@ function NewFlight(uid) {
               ref={refArrive}
             />
           </div>
+          <input type="submit" value="Submit" />
         </div>
-        <input type="submit" value="Submit" />
       </form>
-      <Graph></Graph>
+      {showGraph ? <Graph>data = {apiParams} </Graph> : null}
     </div>
   );
 }

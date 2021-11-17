@@ -3,7 +3,7 @@ import { Auth } from "aws-amplify";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 
-function SignUpForm({ Login, handleSignUpClick }) {
+function SignUpForm({ handleSignUpClick }) {
   const [details, setDetails] = useState({
     name: "",
     username: "",
@@ -33,8 +33,6 @@ function SignUpForm({ Login, handleSignUpClick }) {
     } catch (error) {
       console.log("error signing in", error);
     }
-
-    Login(details);
   };
 
   return (
@@ -93,7 +91,7 @@ function SignUpForm({ Login, handleSignUpClick }) {
             onChange={setPhoneNumberState}
           />
         </div>
-        <div className="form_group">
+        <div className="form-group">
           <label html="password">Password: </label>
           <input
             type="password"
