@@ -72,7 +72,7 @@ function SignUpForm({ handleSignUpClick }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="city">Address: </label>
+          <label htmlFor="city">City: </label>
           <input
             type="address"
             name="address"
