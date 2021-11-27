@@ -12,6 +12,8 @@ import {
   CartesianGrid,
 } from "recharts";
 
+var apiResponse = [];
+
 function Graph(props) {
   useEffect(() => {
     const api =
@@ -22,31 +24,21 @@ function Graph(props) {
       departureDate: moment(props.children[1].date).format("yyyy-MM-DD"),
     };
 
-    const sent = "avg1MonthAgo";
-
-    // const data = {
-    //   originIataCode: "SFO",
-    //   destinationIataCode: "JFK",
-    //   departureDate: "2021-12-21",
-    // };
     axios
       .post(api, data)
       .then((response) => {
+        apiResponse = response;
         //console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  // const months
 
   const data = [];
   const requestedDate = moment(props.children[1].date);
 
-  const testSomeThing = () => {
-    //console.log(data);
-  };
-
+  //For Graph Data
   const fillData = () => {
     data.push({
       Month: requestedDate.subtract(0, "months").format("MMMM"),
@@ -66,7 +58,6 @@ function Graph(props) {
     <div className="graphContainer">
       <h1>Graph</h1>
       {fillData()}
-      {testSomeThing()}
       <ResponsiveContainer width="100%" height={400}>
         <AreaChart data={data}>
           <defs>

@@ -28,6 +28,8 @@ function TrackedFlights(props) {
     date: "",
     depart: "",
     arrive: "",
+    id: "",
+    uid: "",
   });
 
   const submitHandler = () => {
@@ -54,7 +56,7 @@ function TrackedFlights(props) {
     const idDetails = {
       uid: props.data,
     };
-    console.log(props.data);
+    //console.log(props.data);
     try {
       const newTodo = await API.graphql(
         graphqlOperation(getTripByUid, idDetails)
@@ -83,9 +85,22 @@ function TrackedFlights(props) {
             item.fromCity +
             "-----------> " +
             item.toCity,
+          id: item.id,
+          uid: item.uid,
         })
     );
     setData({ trips: aList });
+  };
+
+  const deleteTrip = () => {
+    //DELETE TRIP FROM DATABASE
+    //apiParams has id and uid to be deleted
+    console.log(apiParams.id);
+    console.log(apiParams.uid);
+
+    setRefresh(true);
+    setShowGraph(false);
+    setTrackedFlightVisibility(true);
   };
 
   const displayGraphClick = (item) => {
@@ -93,8 +108,9 @@ function TrackedFlights(props) {
       date: item.departureDate,
       depart: item.fromCity,
       arrive: item.toCity,
+      id: item.id,
+      uid: item.uid,
     });
-    console.log("HELLO");
     setRefresh(true);
     setShowGraph(true);
     setTrackedFlightVisibility(false);
@@ -111,7 +127,10 @@ function TrackedFlights(props) {
 
       {showGraph ? (
         <div>
-          <Graph>data = {apiParams} </Graph>
+          <Graph> data={apiParams} </Graph>
+          <button id="deleteButton" onClick={deleteTrip}>
+            Delete Trip
+          </button>
           <button onClick={handleClick}>Return to Tracked Flights</button>
         </div>
       ) : null}
