@@ -44,6 +44,12 @@ button {
   background-image: none;
 }
 
+#saveButton {
+  color: rgb(255, 255, 255);
+  background-color: rgb(15, 122, 20);
+  background-image: none;
+}
+
 button:hover {
   background-position: 100% 0%;
 }

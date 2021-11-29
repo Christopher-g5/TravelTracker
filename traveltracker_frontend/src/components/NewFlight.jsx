@@ -44,11 +44,6 @@ function NewFlight(props) {
     parsedDepart = parseIATA(refDepart.current.value);
     parsedArrive = parseIATA(refArrive.current.value);
 
-    setAPIParams({ date: dates, depart: parsedDepart, arrive: parsedArrive });
-    if (parsedDepart.length > 2 && parsedArrive.length > 2) {
-      setShowGraph(true);
-    }
-
     //DATABASE AND API CODE HERE
     //Add a new trip here with mutation to database.
     const tripDetails = {
@@ -65,16 +60,28 @@ function NewFlight(props) {
     }
 
     //API.graphql(graphqlOperation(mutations.createItem, {input: itemDetails}));
+
+    setAPIParams({ date: dates, depart: parsedDepart, arrive: parsedArrive });
+    if (parsedDepart.length > 2 && parsedArrive.length > 2) {
+      setShowGraph(true);
+    }
   };
 
   const parseIATA = (airport) => {
     return airport.split(" ", 1)[0];
   };
 
+  const saveClick = async function () {};
+
   return (
     <div>
       {showGraph ? (
-        <Graph>data = {apiParams} </Graph>
+        <div>
+          <Graph>data = {apiParams} </Graph>
+          <button onClick={saveClick} id="saveButton">
+            Save
+          </button>
+        </div>
       ) : (
         <form onSubmit={submitHandler}>
           <Helmet async={true}>
