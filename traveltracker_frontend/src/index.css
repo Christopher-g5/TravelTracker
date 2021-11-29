@@ -61,10 +61,13 @@ button:hover {
   align-items: center;
   justify-content: center;
   background-color: #53565a;
+  border-radius: 8px;
 }
 
 .graphContainer {
   width: 100vh;
+  background-color: #ffffff;
+  padding: 30px;
 }
 
 .titleContainer {

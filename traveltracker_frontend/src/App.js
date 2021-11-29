@@ -6,6 +6,7 @@ import TrackedFlights from './components/TrackedFlights';
 import React, {useState} from "react";
 import Amplify from 'aws-amplify';
 import awsExports from "./aws-exports";
+import { Auth } from "aws-amplify";
 import { AmplifySignOut,withAuthenticator } from '@aws-amplify/ui-react'
 
 
@@ -26,8 +27,21 @@ function App() {
     setMainVisibility(true);
   }
 
-  const Logout = () => {
-    setUID(" ");
+  const logout  = async function (event) {
+    event.preventDefault();
+    let reponse = null;
+    try {
+      //Cognito Sign out
+      reponse = await Auth.signOut();
+      //console.log("auth reponse: ", reponse);
+      setUID(" ");
+      setMainVisibility(false);
+      setVisibility({loginVisible: true, signUpVisible: false});
+      
+    } catch (error) {
+      //Unsuccesful login conditions
+      console.log("Error logging out. Please try again");
+    }
   };
 
   const handleSignUpClick = () => {
@@ -43,6 +57,7 @@ function App() {
       <div className="mainContainer">
       {showMainPage ? 
       <div>
+        <button onClick={logout}>Logout</button>
         <TrackedFlights data={uid.data}/>
       </div>
       : (

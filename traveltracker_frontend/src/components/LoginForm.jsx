@@ -17,7 +17,6 @@ function LoginForm({ Login, showMain }) {
     try {
       //Cognito Sign in
       reponse = await Auth.signIn(details.username, details.password);
-      console.log("auth reponse", reponse.attributes.email);
       //Successful Login will return email to App.js
       Login(reponse.attributes.email);
       showMain();
