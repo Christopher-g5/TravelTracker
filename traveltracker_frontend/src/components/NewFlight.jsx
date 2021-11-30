@@ -44,21 +44,6 @@ function NewFlight(props) {
     parsedDepart = parseIATA(refDepart.current.value);
     parsedArrive = parseIATA(refArrive.current.value);
 
-    //DATABASE AND API CODE HERE
-    //Add a new trip here with mutation to database.
-    const tripDetails = {
-      uid: props.data,
-      departureDate: moment(dates).format("yyyy-MM-DD"),
-      fromCity: parsedDepart,
-      toCity: parsedArrive,
-    };
-    try {
-      const newTodo = await API.graphql(graphqlOperation(addTrip, tripDetails));
-      //alert(JSON.stringify(newTodo));
-    } catch (e) {
-      console.log("Fetching error: ", e);
-    }
-
     //API.graphql(graphqlOperation(mutations.createItem, {input: itemDetails}));
 
     setAPIParams({ date: dates, depart: parsedDepart, arrive: parsedArrive });
@@ -71,7 +56,23 @@ function NewFlight(props) {
     return airport.split(" ", 1)[0];
   };
 
-  const saveClick = async function () {};
+  const saveClick = async function (event) {
+    event.preventDefault();
+    //DATABASE AND API CODE HERE
+    //Add a new trip here with mutation to database.
+    const tripDetails = {
+      uid: props.data,
+      departureDate: moment(dates).format("yyyy-MM-DD"),
+      fromCity: apiParams.depart,
+      toCity: apiParams.arrive,
+    };
+    try {
+      const newTodo = await API.graphql(graphqlOperation(addTrip, tripDetails));
+      //alert(JSON.stringify(newTodo));
+    } catch (e) {
+      console.log("Fetching error: ", e);
+    }
+  };
 
   return (
     <div>
