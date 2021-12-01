@@ -4,7 +4,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { API, graphqlOperation } from "aws-amplify";
 import Graph from "./Graph";
 import { getByUid } from "../graphql/queries";
-import { deleteTrip} from "../graphql/mutations"; 
+import { deleteTrip } from "../graphql/mutations";
 const getTripByUid = `query getTripByUid($uid:String!) {
   getByUid (uid: $uid)
   {
@@ -109,25 +109,24 @@ function TrackedFlights(props) {
     //apiParams has id and uid to be deleted
     console.log(apiParams.id);
     console.log(apiParams.uid);
-	deleteHelper(); 
-    setRefresh(true);
-    setShowGraph(false);
-    setTrackedFlightVisibility(true);
+    deleteHelper();
   };
 
   const deleteHelper = async function () {
-      const idDetails = {
-      id: apiParams.id
+    const idDetails = {
+      id: apiParams.id,
     };
-	 try {
+    try {
       const newTodo = await API.graphql(
         graphqlOperation(deleteTripByID, idDetails)
       );
     } catch (e) {
       console.log("Fetching error: ", e);
     }
-  
-  }
+    setRefresh(true);
+    setShowGraph(false);
+    setTrackedFlightVisibility(true);
+  };
 
   const displayGraphClick = (item) => {
     setAPIParams({
